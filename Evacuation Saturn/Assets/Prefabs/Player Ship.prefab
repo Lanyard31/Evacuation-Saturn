@@ -565,7 +565,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2679871332443325387, guid: e6665aba077dbfd439ca8eb408257b3f, type: 3}
       propertyPath: m_Name
-      value: Laser
+      value: Laser Left
       objectReference: {fileID: 0}
     - target: {fileID: 6352595628674537297, guid: e6665aba077dbfd439ca8eb408257b3f, type: 3}
       propertyPath: m_RootOrder
@@ -1871,7 +1871,27 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2679871332443325387, guid: e6665aba077dbfd439ca8eb408257b3f, type: 3}
       propertyPath: m_Name
-      value: Laser (1)
+      value: Laser Right
+      objectReference: {fileID: 0}
+    - target: {fileID: 4273083051579851036, guid: e6665aba077dbfd439ca8eb408257b3f, type: 3}
+      propertyPath: TrailModule.generateLightingData
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4273083051579851036, guid: e6665aba077dbfd439ca8eb408257b3f, type: 3}
+      propertyPath: TrailModule.colorOverTrail.maxColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4273083051579851036, guid: e6665aba077dbfd439ca8eb408257b3f, type: 3}
+      propertyPath: TrailModule.colorOverTrail.maxColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4273083051579851036, guid: e6665aba077dbfd439ca8eb408257b3f, type: 3}
+      propertyPath: TrailModule.colorOverTrail.maxColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4273083051579851036, guid: e6665aba077dbfd439ca8eb408257b3f, type: 3}
+      propertyPath: TrailModule.colorOverLifetime.maxGradient.key1.a
+      value: 0.13725491
       objectReference: {fileID: 0}
     - target: {fileID: 6352595628674537297, guid: e6665aba077dbfd439ca8eb408257b3f, type: 3}
       propertyPath: m_RootOrder
