@@ -5,6 +5,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] GameObject deathVFX;
+    [SerializeField] GameObject hitVFX;
     [SerializeField] Transform parent;
     [SerializeField] int HP = 2;
 
@@ -27,6 +28,9 @@ public class Enemy : MonoBehaviour
     void OnParticleCollision(GameObject other)
     {
         HP -= 1;
+        GameObject vfx = Instantiate(hitVFX, transform.position, Quaternion.identity);
+        vfx.transform.parent = parent;
+
     }
 
     void ProcessHit()
