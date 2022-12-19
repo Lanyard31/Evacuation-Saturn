@@ -47,8 +47,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f9b6615a206171408896070142feb06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deathFX: {fileID: 7257442649038043143, guid: aa9e0b8779495c046a79a6b6e663084a, type: 3}
-  hitFX: {fileID: 7257442649038043143, guid: bd0a58d31dc33ce44a35c18ffb03d5f6, type: 3}
+  deathVFX: {fileID: 7257442649038043143, guid: aa9e0b8779495c046a79a6b6e663084a, type: 3}
+  hitVFX: {fileID: 7257442649038043143, guid: bd0a58d31dc33ce44a35c18ffb03d5f6, type: 3}
   HP: 7
 --- !u!65 &4340025235280189191
 BoxCollider:
@@ -61,8 +61,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.5832367, y: 0.24378306, z: 1.7516708}
-  m_Center: {x: 0.015815735, y: -0.0098694265, z: -0.031570435}
+  m_Size: {x: 1.5832367, y: 0.18449116, z: 1.7516708}
+  m_Center: {x: 0.015815735, y: -0.01159811, z: -0.031570435}
 --- !u!1 &4711110976670414292
 GameObject:
   m_ObjectHideFlags: 0

@@ -113,8 +113,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f9b6615a206171408896070142feb06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deathFX: {fileID: 7257442649038043143, guid: aa9e0b8779495c046a79a6b6e663084a, type: 3}
-  hitFX: {fileID: 7257442649038043143, guid: bd0a58d31dc33ce44a35c18ffb03d5f6, type: 3}
+  deathVFX: {fileID: 7257442649038043143, guid: aa9e0b8779495c046a79a6b6e663084a, type: 3}
+  hitVFX: {fileID: 7257442649038043143, guid: bd0a58d31dc33ce44a35c18ffb03d5f6, type: 3}
+  parent: {fileID: 0}
   HP: 30
 --- !u!1001 &5203873121062886330
 PrefabInstance:
