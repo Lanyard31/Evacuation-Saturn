@@ -23,6 +23,16 @@ public class PlayerControls : MonoBehaviour
     [SerializeField] float controlPitchFactor = -10f;
     [SerializeField] float controlRollFactor = -20f;
 
+    [Header("Laser SFX")]
+    [SerializeField] AudioSource laserSFX;
+    [SerializeField] AudioClip laserClip;
+    [SerializeField] bool laserTimer = true;
+    [SerializeField] float laserTimerDuration = 0.5f;
+    public float pitchMin;
+    public float pitchMax;
+    public float volumeMin;
+    public float volumeMax;
+
     float xThrow, yThrow;
 
     void Update()
@@ -78,7 +88,20 @@ public class PlayerControls : MonoBehaviour
         {
             var emissionModule = laser.GetComponent<ParticleSystem>().emission;
             emissionModule.enabled = isActive;
+            if (isActive && laserTimer)
+                {
+                laserSFX.pitch = Random.Range(pitchMin, pitchMax);
+                laserSFX.volume = Random.Range(volumeMin, volumeMax);
+                laserSFX.PlayOneShot(laserClip);
+                laserTimer = false;
+                Invoke("LaserTimerReset", laserTimerDuration);
+                }
+
         }
     }
 
+    void LaserTimerReset()
+    {
+        laserTimer = true;
+    }
 }
