@@ -7,6 +7,10 @@ public class PlayerControls : MonoBehaviour
     [Header("General Setup Settings")]
     [Tooltip("How fast ships moves up and down")]
     [SerializeField] float controlSpeed = 10f;
+    private float controlSpeedStored;
+    private float controlSpeedBoosted;
+    private float controlRollFactorBoosted;
+
     [Tooltip("How far player ship moves horizontally")][SerializeField] float xRange = 10f;
     [Tooltip("How far player ship moves vertically")][SerializeField] float yRange = 7f;
 
@@ -22,36 +26,94 @@ public class PlayerControls : MonoBehaviour
     [Header("Player input based tuning")]
     [SerializeField] float controlPitchFactor = -10f;
     [SerializeField] float controlRollFactor = -20f;
+    private float controlRollFactorStored;
+
+    public float pitchMin;
+    public float pitchMax;
+    public float volumeMin;
+    public float volumeMax;
+    [SerializeField] float evasiveBoost = 1.5f;
 
     [Header("Laser SFX")]
     [SerializeField] AudioSource laserSFX;
     [SerializeField] AudioClip laserClip;
     [SerializeField] bool laserTimer = true;
     [SerializeField] float laserTimerDuration = 0.5f;
-    public float pitchMin;
-    public float pitchMax;
-    public float volumeMin;
-    public float volumeMax;
+    float roll;
+
 
     float xThrow, yThrow;
+    bool evasive = false;
+    Rigidbody m_Rigidbody;
+    Vector3 m_EulerAngleVelocity;
+
+
+    void Start() {
+            evasive = false;
+            controlSpeedStored = controlSpeed;
+            controlRollFactorStored = controlRollFactor;
+
+            controlSpeedBoosted = controlSpeed * evasiveBoost;
+            controlRollFactorBoosted = controlRollFactor * evasiveBoost * 2;
+    }
 
     void Update()
     {
+        ProcessEvasive();
         ProcessTranslation();
         ProcessRotation();
         ProcessFiring();
     }
 
+
+
+    void ProcessEvasive()
+    {
+        if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift) || (Input.GetAxis("XBOX_LT") >= 0.1f))
+        {
+            evasive = true;
+            controlSpeed = controlSpeedBoosted;
+            controlRollFactor = controlRollFactorBoosted;
+        }
+        else
+        {
+            evasive = false;
+            controlSpeed = controlSpeedStored;
+            controlRollFactor = controlRollFactorStored;
+        }
+    }
+
     void ProcessRotation()
     {
+
         float pitchDueToPosition = transform.localPosition.y * positionPitchFactor;
         float pitchDueToControlThrow = yThrow * controlPitchFactor;
 
         float pitch = pitchDueToPosition + pitchDueToControlThrow;
         float yaw = transform.localPosition.x * positionYawFactor;
-        float roll = xThrow * controlRollFactor;
 
-        transform.localRotation = Quaternion.Euler(pitch, yaw, roll);
+        // float rollLastFrame = roll;
+        // roll = Mathf.Lerp(rollLastFrame, xThrow * controlRollFactor, t);
+        // t += 0.2f * Time.deltaTime;
+
+        if (evasive == false)
+        {
+            roll = xThrow * controlRollFactor;
+            transform.localRotation = Quaternion.Euler(pitch, yaw, roll);
+        }
+        else
+        {
+            //roll = xThrow * controlRollFactor;
+            if (xThrow > 0)
+            {
+                roll = roll - 8 * Time.deltaTime * 50;
+            }
+            else
+            {
+                roll = roll + 8 * Time.deltaTime * 50 ;   
+            }
+            transform.localRotation = Quaternion.Euler(pitch, yaw, roll);
+        }
     }
 
     void ProcessTranslation()

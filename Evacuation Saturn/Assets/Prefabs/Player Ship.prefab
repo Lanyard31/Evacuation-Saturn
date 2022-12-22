@@ -59,6 +59,15 @@ MonoBehaviour:
   positionYawFactor: 1
   controlPitchFactor: -15
   controlRollFactor: -40
+  pitchMin: 0
+  pitchMax: 0
+  volumeMin: 0
+  volumeMax: 0
+  evasiveBoost: 1.5
+  laserSFX: {fileID: 0}
+  laserClip: {fileID: 0}
+  laserTimer: 1
+  laserTimerDuration: 0.5
 --- !u!114 &7164603998492626156
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -689,7 +698,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6352595628674537297, guid: e6665aba077dbfd439ca8eb408257b3f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.24
+      value: -1.428
       objectReference: {fileID: 0}
     - target: {fileID: 6352595628674537297, guid: e6665aba077dbfd439ca8eb408257b3f, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2027,7 +2036,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6352595628674537297, guid: e6665aba077dbfd439ca8eb408257b3f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.19
+      value: 1.315
       objectReference: {fileID: 0}
     - target: {fileID: 6352595628674537297, guid: e6665aba077dbfd439ca8eb408257b3f, type: 3}
       propertyPath: m_LocalPosition.y
