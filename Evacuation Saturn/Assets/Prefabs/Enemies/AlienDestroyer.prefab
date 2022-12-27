@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5057708303724324234}
   m_Layer: 0
   m_Name: AlienDestroyer
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -115,7 +115,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   deathVFX: {fileID: 7257442649038043143, guid: aa9e0b8779495c046a79a6b6e663084a, type: 3}
   hitVFX: {fileID: 7257442649038043143, guid: bd0a58d31dc33ce44a35c18ffb03d5f6, type: 3}
-  parent: {fileID: 0}
   HP: 30
 --- !u!1001 &5203873121062886330
 PrefabInstance:

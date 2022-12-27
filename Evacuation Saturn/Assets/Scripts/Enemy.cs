@@ -28,10 +28,12 @@ public class Enemy : MonoBehaviour
 
     void OnParticleCollision(GameObject other)
     {
-        HP -= 1;
-        GameObject vfx = Instantiate(hitVFX, transform.position, Quaternion.identity);
-        vfx.transform.parent = parentGameObject.transform;
-
+        //if (other.tag != "Enemy")
+        //{
+            HP -= 1;
+            GameObject vfx = Instantiate(hitVFX, transform.position, Quaternion.identity);
+            vfx.transform.parent = parentGameObject.transform;
+        //}
     }
 
     void ProcessHit()
