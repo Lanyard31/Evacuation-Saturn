@@ -10,7 +10,7 @@ namespace Tarodev {
         [SerializeField] private GameObject _explosionPrefab;
 
         [Header("MOVEMENT")] 
-        [SerializeField] private float _speed = 9f;
+        [SerializeField] private float _speed = 10f;
         [SerializeField] private float _rotateSpeed = 110;
 
         [Header("PREDICTION")] 
@@ -62,18 +62,18 @@ namespace Tarodev {
             _rb.MoveRotation(Quaternion.RotateTowards(transform.rotation, rotation, _rotateSpeed * Time.deltaTime));
         }
 
-        private void OnCollisionEnter(Collision collision) {
-            if(_explosionPrefab) Instantiate(_explosionPrefab, transform.position, Quaternion.identity);
-            //if (collision.transform.TryGetComponent<IExplode>(out var ex)) ex.Explode();
-            Debug.Log("Missile Exploding Now");
-            Destroy(gameObject);
-        }
+        // private void OnCollisionEnter(Collision collision) {
+        //     if(_explosionPrefab) Instantiate(_explosionPrefab, transform.position, Quaternion.identity);
+        //     //if (collision.transform.TryGetComponent<IExplode>(out var ex)) ex.Explode();
+        //     Debug.Log("Missile Exploding Now");
+        //     Destroy(gameObject);
+        // }
 
-        private void OnDrawGizmos() {
-            Gizmos.color = Color.red;
-            Gizmos.DrawLine(transform.position, _standardPrediction);
-            Gizmos.color = Color.green;
-            Gizmos.DrawLine(_standardPrediction, _deviatedPrediction);
-        }
+        // private void OnDrawGizmos() {
+        //     Gizmos.color = Color.red;
+        //     Gizmos.DrawLine(transform.position, _standardPrediction);
+        //     Gizmos.color = Color.green;
+        //     Gizmos.DrawLine(_standardPrediction, _deviatedPrediction);
+        // }
     }
 }

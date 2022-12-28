@@ -4,15 +4,22 @@ using UnityEngine;
 
 public class SelfDestruct : MonoBehaviour
 {
-    [SerializeField] float timeTillDestruction = 4f;
-    // Start is called before the first frame update
+    [SerializeField] float timeTillDestruction = 6f;
+    Enemy enemyScript;
+
     void Start()
     {
+        enemyScript = GetComponent<Enemy>();
         Invoke("Boom", timeTillDestruction);
     }
 
     void Boom()
     {
+        if (enemyScript != null)
+        {
+            enemyScript.KillEnemy();
+        }
+
         Destroy(gameObject);
     }
 

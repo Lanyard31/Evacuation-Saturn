@@ -30,9 +30,15 @@ public class Enemy : MonoBehaviour
     {
         //if (other.tag != "Enemy")
         //{
-            HP -= 1;
-            GameObject vfx = Instantiate(hitVFX, transform.position, Quaternion.identity);
-            vfx.transform.parent = parentGameObject.transform;
+            HitEffect();
+        //}
+    }
+
+        void OnTriggerEnter(Collider other)
+    {
+        //if (other.tag != "Enemy")
+        //{
+            HitEffect();
         //}
     }
 
@@ -41,11 +47,18 @@ public class Enemy : MonoBehaviour
         scoreBoard.IncreaseScore(1);
     }
     
-    void KillEnemy()
+    public void KillEnemy()
     {
         GameObject vfx = Instantiate(deathVFX, transform.position, Quaternion.identity);
         vfx.transform.parent = parentGameObject.transform;
         Destroy(gameObject);
+    }
+
+    void HitEffect()
+    {
+        HP--;
+        GameObject vfx = Instantiate(hitVFX, transform.position, Quaternion.identity);
+        vfx.transform.parent = parentGameObject.transform;
     }
 
 
