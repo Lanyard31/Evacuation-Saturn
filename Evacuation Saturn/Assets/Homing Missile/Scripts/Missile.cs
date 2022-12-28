@@ -10,8 +10,8 @@ namespace Tarodev {
         [SerializeField] private GameObject _explosionPrefab;
 
         [Header("MOVEMENT")] 
-        [SerializeField] private float _speed = 8.5f;
-        [SerializeField] private float _rotateSpeed = 95;
+        [SerializeField] private float _speed = 9f;
+        [SerializeField] private float _rotateSpeed = 110;
 
         [Header("PREDICTION")] 
         [SerializeField] private float _maxDistancePredict = 100;
