@@ -18,6 +18,10 @@ public class CollisionHandler : MonoBehaviour
     [SerializeField] GameObject[] LeftSide;
     [SerializeField] GameObject[] RightSide;
     [SerializeField] GameObject[] Body;
+    [SerializeField] GameObject[] LeftDebris;
+    [SerializeField] GameObject[] RightDebris;
+    [SerializeField] GameObject EngineLeft;
+    [SerializeField] GameObject EngineRight;
 
     private Rigidbody rb;
     public bool tumbling = false;
@@ -37,7 +41,6 @@ public class CollisionHandler : MonoBehaviour
         rb = GetComponent<Rigidbody>(); 
         controls = FindObjectOfType<PlayerControls>();
         rbStored = rb.velocity;
-
     }
     
     void Update()
@@ -80,10 +83,7 @@ public class CollisionHandler : MonoBehaviour
         }
         else
         {
-            Debug.Log(tumbleDirection);
-            Debug.Log("old local " + transform.localPosition);
             transform.localPosition = new Vector3 (((transform.localPosition.x + tumbleDirection.x  + (tumbleSpeed * Time.deltaTime)/2)), (transform.localPosition.y + tumbleDirection.y + (tumbleSpeed * Time.deltaTime)), 0f);
-            Debug.Log("new local " + transform.localPosition); 
             //rb.velocity = new Vector3 (tumbleDirection.x, tumbleDirection.y, 0) * tumbleSpeed * Time.deltaTime;
 
 
@@ -109,6 +109,8 @@ public class CollisionHandler : MonoBehaviour
 
         if (HP < StartingHP * 0.5 && HP >= StartingHP * 0.25)
         {
+            var e = EngineRight.GetComponent<EngineBoom>();
+            e.Boomer();
             foreach (GameObject item in RightSide)
             {
                 if (item != null)
@@ -118,10 +120,16 @@ public class CollisionHandler : MonoBehaviour
                     item.GetComponent<PlayerHitFlash>().boom();
                 }
             }
+            foreach (GameObject item in RightDebris)
+            {
+                item.SetActive(true);
+            }
         }
 
         else if (HP < StartingHP * 0.25 && HP > 0)
         {
+            var e = EngineLeft.GetComponent<EngineBoom>();
+            e.Boomer();
             foreach (GameObject item in LeftSide)
             {
                 if (item != null)
@@ -130,6 +138,10 @@ public class CollisionHandler : MonoBehaviour
                     emissionModule.enabled = true;
                     item.GetComponent<PlayerHitFlash>().boom();
                 }
+            }
+            foreach (GameObject item in LeftDebris)
+            {
+                item.SetActive(true);
             }
         }
         else if (HP <= 0)
