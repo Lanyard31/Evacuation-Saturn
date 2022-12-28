@@ -9,41 +9,56 @@ public class PlayerHitFlash : MonoBehaviour
     private int originalColorIndex;
  
     public bool useEmission;
+    public AudioSource crashAlarm;
  
     private void Start()
     {
+        UpdateMeshCount();
+    }
+
+    private void UpdateMeshCount()
+    {
         // Find all the children of the GameObject with MeshRenderers
- 
+
         MeshRenderer[] children = GetComponentsInChildren<MeshRenderer>();
- 
+
         // Cycle through each child object found with a MeshRenderer
- 
+
         foreach (MeshRenderer rend in children)
         {
-            // And for each child, cycle through each material
- 
-            foreach (Material mat in rend.materials)
+            if (rend != null)
             {
-                if (useEmission)
+                // And for each child, cycle through each material
+
+                foreach (Material mat in rend.materials)
                 {
-                    // Enable Keyword EMISSION for each material
- 
-                    mat.EnableKeyword("_EMISSION");
-                }
- 
-                else
-                {
-                    // Store original colors
- 
-                    originalColors.Add(mat.color);
+                    if (useEmission)
+                    {
+                        // Enable Keyword EMISSION for each material
+
+                        mat.EnableKeyword("_EMISSION");
+                    }
+
+                    else
+                    {
+                        // Store original colors
+
+                        originalColors.Add(mat.color);
+                    }
                 }
             }
         }
     }
- 
+
     public void Flash()
     {
-        StartCoroutine("HitFlash");
+        crashAlarm.Play();
+        if (this.isActiveAndEnabled == true)
+        {
+            UpdateMeshCount();
+            StartCoroutine("HitFlash");
+            StartCoroutine("HitFlash");
+        }
     }
  
     public IEnumerator HitFlash()
@@ -54,35 +69,59 @@ public class PlayerHitFlash : MonoBehaviour
  
         foreach (MeshRenderer rend in children)
         {
-            foreach (Material mat in rend.materials)
+            if (rend != null)
             {
-                if (useEmission)
-                    mat.SetColor("_EmissionColor", Color.white);
- 
-                else
-                    mat.SetColor("_BaseColor", Color.red);
-                    Debug.Log("Red");
+                foreach (Material mat in rend.materials)
+                {
+
+                    if (useEmission)
+                        mat.SetColor("_EmissionColor", Color.white);
+
+                    else
+                        mat.SetColor("_BaseColor", Color.red);
+
+                }
             }
         }
  
-        yield return new WaitForSeconds(0.001f);
+        yield return new WaitForSeconds(Random.Range(0.1f, 0.2f));
  
+        foreach (MeshRenderer rend in children)
+        {
+            if (rend != null)
+            {
+                rend.enabled = false;
+            }
+        }
+        yield return new WaitForSeconds(Random.Range(0.04f, 0.08f));
+
         // Restore default colors or emission
  
         foreach (MeshRenderer rend in children)
         {
-            foreach (Material mat in rend.materials)
+            if (rend != null)
             {
-                if (useEmission)
-                    mat.SetColor("_EmissionColor", Color.black);
- 
-                else
+                if (rend != null)
                 {
-                    mat.SetColor("_BaseColor", originalColors[originalColorIndex]);
- 
-                    // Increment originalColorIndex by 1
- 
-                    originalColorIndex += 1;
+                    rend.enabled = true;
+                }
+
+                foreach (Material mat in rend.materials)
+                {
+
+                    if (useEmission)
+                        mat.SetColor("_EmissionColor", Color.black);
+
+                    else
+                    {
+
+                        mat.SetColor("_BaseColor", originalColors[originalColorIndex]);
+
+                        // Increment originalColorIndex by 1
+
+                        originalColorIndex += 1;
+
+                    }
                 }
             }
         }
@@ -107,6 +146,10 @@ public class PlayerHitFlash : MonoBehaviour
 
     private void boom2()
     {
-        Destroy(gameObject);
+        for (var i = this.transform.childCount - 1; i >= 0; i--)
+        {
+            Object.Destroy(this.transform.GetChild(i).gameObject);
+        }
+        //Destroy(gameObject);
     }
 }

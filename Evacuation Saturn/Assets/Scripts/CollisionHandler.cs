@@ -17,16 +17,19 @@ public class CollisionHandler : MonoBehaviour
 
     [SerializeField] GameObject[] LeftSide;
     [SerializeField] GameObject[] RightSide;
+    [SerializeField] GameObject[] Body;
 
     private Rigidbody rb;
-    bool tumbling = false;
+    public bool tumbling = false;
 
     Vector3 tumbleDirection;
     [SerializeField] float tumbleSpeed;
+    [SerializeField] float controlsDisabledTime = 0.25f;
     PlayerControls controls;
 
     Vector3 rbStored;
     float zStored;
+    public AudioSource playerboom;
 
     void Start()
     {
@@ -50,21 +53,22 @@ public class CollisionHandler : MonoBehaviour
         {
             HP--;
             //rbStored = rb.velocity;
-            Debug.Log(HP);
+            Debug.Log("HP: " + HP);
             zStored = transform.localPosition.z;
         }
         tumbling = true;
-        GetComponent<PlayerControls>().enabled = false;
-        tumbleDirection = rb.transform.position - other.transform.position;
+        //GetComponent<PlayerControls>().enabled = false;
+        tumbleDirection = this.transform.position - other.transform.position;
         tumbleDirection = tumbleDirection.normalized;
-        Invoke("ReEnableControls", 0.2f);
+        CheckHealth();
+        Invoke("ReEnableControls", controlsDisabledTime);
      }
 
     void ReEnableControls()
     {
         GetComponent<PlayerControls>().enabled = true;
-        rb.velocity = rbStored;
-        transform.localPosition = new Vector3 (transform.localPosition.x, transform.localPosition.y, zStored);
+        //rb.velocity = rbStored;
+        //transform.localPosition = new Vector3 (transform.localPosition.x, transform.localPosition.y, zStored);
         tumbling = false;
     }
 
@@ -76,9 +80,14 @@ public class CollisionHandler : MonoBehaviour
         }
         else
         {
+            Debug.Log(tumbleDirection);
+            Debug.Log("old local " + transform.localPosition);
+            transform.localPosition = new Vector3 (((transform.localPosition.x + tumbleDirection.x  + (tumbleSpeed * Time.deltaTime)/2)), (transform.localPosition.y + tumbleDirection.y + (tumbleSpeed * Time.deltaTime)), 0f);
+            Debug.Log("new local " + transform.localPosition); 
+            //rb.velocity = new Vector3 (tumbleDirection.x, tumbleDirection.y, 0) * tumbleSpeed * Time.deltaTime;
 
-            rb.velocity = new Vector3 (tumbleDirection.x, tumbleDirection.y, rb.velocity.z) * tumbleSpeed * Time.deltaTime;
 
+// transform.localPosition = new Vector3 ((transform.localPosition.x - (tumbleDirection.x * tumbleSpeed * Time.deltaTime)), (transform.localPosition.y + tumbleDirection.y + (tumbleSpeed * Time.deltaTime)), 0f);
 
             // float xOffset = tumbleDirection.x * Time.deltaTime * tumbleSpeed;
             // float rawXPos = transform.localPosition.x + xOffset;
@@ -93,53 +102,32 @@ public class CollisionHandler : MonoBehaviour
 
     }
 
-    void FixedUpdate()
-    {
-        CheckHealth();
-    }
 
     void CheckHealth()
     {
-        if (HP < StartingHP * 1 && HP >= StartingHP * 0.6)
-        {
-            foreach (GameObject item in RightSide)
-            {
-                item.GetComponent<PlayerHitFlash>().Flash();
-            }
-            foreach (GameObject item in LeftSide)
-            {
-                item.GetComponent<PlayerHitFlash>().Flash();
-            }
-        }
 
-        if (HP < StartingHP * 0.6 && HP >= StartingHP * 0.3)
+
+        if (HP < StartingHP * 0.5 && HP >= StartingHP * 0.25)
         {
             foreach (GameObject item in RightSide)
             {
                 if (item != null)
                 {
+                    var emissionModule = item.GetComponent<ParticleSystem>().emission;
+                    emissionModule.enabled = true;
                     item.GetComponent<PlayerHitFlash>().boom();
                 }
             }
-            foreach (GameObject item in LeftSide)
-            {
-                item.GetComponent<PlayerHitFlash>().Flash();
-            }
         }
 
-        else if (HP < StartingHP * 0.3 && HP > 0)
+        else if (HP < StartingHP * 0.25 && HP > 0)
         {
-            foreach (GameObject item in RightSide)
-            {
-                if (item != null)
-                {
-                    item.GetComponent<PlayerHitFlash>().boom();
-                }
-            }
             foreach (GameObject item in LeftSide)
             {
                 if (item != null)
                 {
+                    var emissionModule = item.GetComponent<ParticleSystem>().emission;
+                    emissionModule.enabled = true;
                     item.GetComponent<PlayerHitFlash>().boom();
                 }
             }
@@ -149,11 +137,20 @@ public class CollisionHandler : MonoBehaviour
             StartCrashSequence();
         }
 
+        foreach (GameObject item in Body)
+        {
+            if (item != null)
+                {
+                    item.GetComponent<PlayerHitFlash>().Flash();
+                }
+        }
+
 
     }
 
     void StartCrashSequence()
     {
+        playerboom.Play();
         GetComponent<PlayerControls>().enabled = false;
         Explosion.Play();
         GetComponent<BoxCollider>().enabled = false;

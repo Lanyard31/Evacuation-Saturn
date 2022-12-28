@@ -416,29 +416,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &180888298 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8506147640054120465, guid: 582b9648ccf609e4eaf64be199762ce5, type: 3}
-  m_PrefabInstance: {fileID: 8506617979438897061}
-  m_PrefabAsset: {fileID: 0}
---- !u!54 &180888302 stripped
-Rigidbody:
-  m_CorrespondingSourceObject: {fileID: 6551287338199905672, guid: 582b9648ccf609e4eaf64be199762ce5, type: 3}
-  m_PrefabInstance: {fileID: 8506617979438897061}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &180888305
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 180888298}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e27393ecb4651b54ca9e06f38c44ad18, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _rb: {fileID: 180888302}
 --- !u!1001 &206786551
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6050,18 +6027,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 424063161, guid: 582b9648ccf609e4eaf64be199762ce5, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 424063164, guid: 582b9648ccf609e4eaf64be199762ce5, type: 3}
-      propertyPath: prewarm
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 424063164, guid: 582b9648ccf609e4eaf64be199762ce5, type: 3}
-      propertyPath: CollisionModule.enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8506617977920980181, guid: 582b9648ccf609e4eaf64be199762ce5, type: 3}
       propertyPath: m_Name
       value: Player Rig

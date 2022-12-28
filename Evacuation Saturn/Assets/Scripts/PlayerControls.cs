@@ -48,6 +48,8 @@ public class PlayerControls : MonoBehaviour
     Vector3 m_EulerAngleVelocity;
     int lastXThrow = -1;
 
+    [SerializeField] CollisionHandler CH;
+
 
     void Start() {
             evasive = false;
@@ -60,10 +62,13 @@ public class PlayerControls : MonoBehaviour
 
     void Update()
     {
-        ProcessEvasive();
-        ProcessTranslation();
-        ProcessRotation();
-        ProcessFiring();
+        if (CH.tumbling == false)
+        {
+            ProcessEvasive();
+            ProcessTranslation();
+            ProcessRotation();
+            ProcessFiring();
+        }
     }
 
 
