@@ -2679,6 +2679,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4579390dce852df47981a26c39c09a05, type: 3}
+--- !u!1 &985016790 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5793489774600876583, guid: 582b9648ccf609e4eaf64be199762ce5, type: 3}
+  m_PrefabInstance: {fileID: 8506617979438897061}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &990345976
 GameObject:
   m_ObjectHideFlags: 0
@@ -2767,6 +2772,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0bb5750f8a9f79b4ea8fcd5fd98a639a, type: 3}
+--- !u!1 &1198229245 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4830164996893889982, guid: 582b9648ccf609e4eaf64be199762ce5, type: 3}
+  m_PrefabInstance: {fileID: 8506617979438897061}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1204205017
 GameObject:
   m_ObjectHideFlags: 0
@@ -6027,6 +6037,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2784536474452902102, guid: 582b9648ccf609e4eaf64be199762ce5, type: 3}
+      propertyPath: EngineLeft
+      value: 
+      objectReference: {fileID: 985016790}
+    - target: {fileID: 2784536474452902102, guid: 582b9648ccf609e4eaf64be199762ce5, type: 3}
+      propertyPath: EngineRight
+      value: 
+      objectReference: {fileID: 1198229245}
     - target: {fileID: 8506617977920980181, guid: 582b9648ccf609e4eaf64be199762ce5, type: 3}
       propertyPath: m_Name
       value: Player Rig
