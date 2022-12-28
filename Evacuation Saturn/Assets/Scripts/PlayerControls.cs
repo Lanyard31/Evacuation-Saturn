@@ -11,8 +11,8 @@ public class PlayerControls : MonoBehaviour
     private float controlSpeedBoosted;
     private float controlRollFactorBoosted;
 
-    [Tooltip("How far player ship moves horizontally")][SerializeField] float xRange = 10f;
-    [Tooltip("How far player ship moves vertically")][SerializeField] float yRange = 7f;
+    [Tooltip("How far player ship moves horizontally")][SerializeField] public float xRange = 10f;
+    [Tooltip("How far player ship moves vertically")][SerializeField] public float yRange = 7f;
 
     [Header("Laser Array")]
     [Tooltip("Add all player lasers here")]
@@ -46,6 +46,7 @@ public class PlayerControls : MonoBehaviour
     bool evasive = false;
     Rigidbody m_Rigidbody;
     Vector3 m_EulerAngleVelocity;
+    int lastXThrow = -1;
 
 
     void Start() {
@@ -107,10 +108,16 @@ public class PlayerControls : MonoBehaviour
             if (xThrow > 0)
             {
                 roll = roll - 8 * Time.deltaTime * 50;
+                lastXThrow = -1;
+            }
+            else if (xThrow < 0)
+            {
+                roll = roll + 8 * Time.deltaTime * 50 ;
+                lastXThrow = 1;
             }
             else
             {
-                roll = roll + 8 * Time.deltaTime * 50 ;   
+                roll = roll + (8 * lastXThrow) * Time.deltaTime * 50;
             }
             transform.localRotation = Quaternion.Euler(pitch, yaw, roll);
         }
