@@ -6,6 +6,7 @@ public class Refugee : MonoBehaviour
 {
     [SerializeField] GameObject refugeeDeathVFX;
     [SerializeField] GameObject refugeeHitVFX;
+    [SerializeField] GameObject deathRadio;
     [SerializeField] int HP = 50;
 
     GameObject parentGameObject;
@@ -45,5 +46,8 @@ public class Refugee : MonoBehaviour
         HP--;
         GameObject vfx = Instantiate(refugeeHitVFX, transform.position, Quaternion.identity);
         vfx.transform.parent = parentGameObject.transform;
+        GameObject vfx2 = Instantiate(deathRadio, transform.position, Quaternion.identity);
+        vfx2.transform.parent = parentGameObject.transform;
+        Debug.Log("Took HIt");
     }
 }
