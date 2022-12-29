@@ -10,7 +10,7 @@ namespace Tarodev {
         [SerializeField] private GameObject _explosionPrefab;
 
         [Header("MOVEMENT")] 
-        [SerializeField] private float _speed = 10f;
+        [SerializeField] private float _speed = 11f;
         [SerializeField] private float _rotateSpeed = 110;
 
         [Header("PREDICTION")] 
@@ -23,7 +23,11 @@ namespace Tarodev {
         [SerializeField] private float _deviationAmount = 50;
         [SerializeField] private float _deviationSpeed = 2;
 
+        GameObject parentGameObject;
+
         private void Start() {
+            parentGameObject = GameObject.FindWithTag("SpawnAtRuntime");
+            this.transform.parent = parentGameObject.transform;
             _target = FindObjectOfType<Target>();
             _rb = GetComponent<Rigidbody>();
             _explosionPrefab = (GameObject)Resources.Load("EnemyExplosionVFX", typeof(GameObject));

@@ -9,6 +9,7 @@ public class SelfDestruct : MonoBehaviour
 
     void Start()
     {
+        timeTillDestruction = Random.Range(6f, 8f);
         enemyScript = GetComponent<Enemy>();
         Invoke("Boom", timeTillDestruction);
     }

@@ -19,7 +19,7 @@ namespace Tarodev
         {
             _target = FindObjectOfType<Target>();
             parentGameObject = GameObject.FindWithTag("SpawnAtRuntime");
-            range = Random.Range(80f, 120f);
+            range = Random.Range(80f, 110f);
         }
 
 
