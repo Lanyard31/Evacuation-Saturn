@@ -35,6 +35,8 @@ public class CollisionHandler : MonoBehaviour
     float zStored;
     public AudioSource playerboom;
 
+    [SerializeField] GameObject MasterTimeline;
+
     void Start()
     {
         StartingHP = HP;
@@ -128,6 +130,7 @@ public class CollisionHandler : MonoBehaviour
 
         else if (HP < StartingHP * 0.25 && HP > 0)
         {
+            controls.crippled = true;
             var e = EngineLeft.GetComponent<EngineBoom>();
             e.Boomer();
             foreach (GameObject item in LeftSide)
@@ -162,12 +165,28 @@ public class CollisionHandler : MonoBehaviour
 
     void StartCrashSequence()
     {
-        playerboom.Play();
         GetComponent<PlayerControls>().enabled = false;
-        Explosion.Play();
         GetComponent<BoxCollider>().enabled = false;
-        body.SetActive(false);
-        Invoke("ReloadLevel", loadDelay);
+
+        if (MasterTimeline.GetComponent<TimeFold>().FoldOnline == false)
+        {
+            playerboom.Play();
+            body.SetActive(false);
+            Explosion.Play();
+            Invoke("ReloadLevel", loadDelay);
+        }
+        else
+        {
+            HP++;
+            Invoke("GoToTimeJumpInTimeFold", (loadDelay/8));
+        }
+    }
+
+    void GoToTimeJumpInTimeFold()
+    {
+        GetComponent<PlayerControls>().enabled = true;
+        GetComponent<BoxCollider>().enabled = true;
+        MasterTimeline.GetComponent<TimeFold>().TimeJump();
     }
 
     void ReloadLevel()

@@ -38,6 +38,8 @@ public class Refugee : MonoBehaviour
     {
         GameObject vfx = Instantiate(refugeeDeathVFX, transform.position, Quaternion.identity);
         vfx.transform.parent = parentGameObject.transform;
+        GameObject vfx2 = Instantiate(deathRadio, transform.position, Quaternion.identity);
+        vfx2.transform.parent = parentGameObject.transform;
         Destroy(gameObject);
     }
 
@@ -46,8 +48,5 @@ public class Refugee : MonoBehaviour
         HP--;
         GameObject vfx = Instantiate(refugeeHitVFX, transform.position, Quaternion.identity);
         vfx.transform.parent = parentGameObject.transform;
-        GameObject vfx2 = Instantiate(deathRadio, transform.position, Quaternion.identity);
-        vfx2.transform.parent = parentGameObject.transform;
-        Debug.Log("Took HIt");
     }
 }

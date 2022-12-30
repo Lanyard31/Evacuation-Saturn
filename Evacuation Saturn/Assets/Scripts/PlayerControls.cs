@@ -47,6 +47,7 @@ public class PlayerControls : MonoBehaviour
     Rigidbody m_Rigidbody;
     Vector3 m_EulerAngleVelocity;
     int lastXThrow = -1;
+    public bool crippled = false;
 
     [SerializeField] CollisionHandler CH;
 
@@ -132,6 +133,12 @@ public class PlayerControls : MonoBehaviour
     {
         xThrow = Input.GetAxis("Horizontal");
         yThrow = Input.GetAxis("Vertical");
+
+        if (crippled == true)
+        {
+            xThrow = xThrow * 0.8f;
+            yThrow = yThrow * 0.8f;
+        }
 
         float xOffset = xThrow * Time.deltaTime * controlSpeed;
         float rawXPos = transform.localPosition.x + xOffset;
