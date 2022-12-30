@@ -107,12 +107,13 @@ public class CollisionHandler : MonoBehaviour
 
     void CheckHealth()
     {
-
-
         if (HP < StartingHP * 0.5 && HP >= StartingHP * 0.25)
         {
-            var e = EngineRight.GetComponent<EngineBoom>();
-            e.Boomer();
+            if (EngineRight != null)
+            {
+                var e = EngineRight.GetComponent<EngineBoom>();
+                e.Boomer();
+            }
             foreach (GameObject item in RightSide)
             {
                 if (item != null)
@@ -130,9 +131,15 @@ public class CollisionHandler : MonoBehaviour
 
         else if (HP < StartingHP * 0.25 && HP > 0)
         {
-            controls.crippled = true;
-            var e = EngineLeft.GetComponent<EngineBoom>();
-            e.Boomer();
+            if (controls != null)
+            {
+                controls.crippled = true;
+            }
+            if (EngineLeft != null)
+            {
+                var e = EngineLeft.GetComponent<EngineBoom>();
+                e.Boomer();
+            }
             foreach (GameObject item in LeftSide)
             {
                 if (item != null)
