@@ -9,6 +9,7 @@ public class TimeFold : MonoBehaviour
     [SerializeField] private double JumpAmount;
     private double JumpTime;
     public bool FoldOnline = false;
+    public bool finaleDisabled = false;
 
     private void Awake()
     {
@@ -19,9 +20,12 @@ public class TimeFold : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-    if (Input.GetKeyDown(KeyCode.RightControl) || Input.GetButtonDown("Fire1"))
+        if (finaleDisabled == false)
         {
-            TimeJump();
+            if (Input.GetKeyDown(KeyCode.RightControl) || Input.GetButtonDown("Fire1"))
+            {
+                TimeJump();
+            }
         }
     }
 

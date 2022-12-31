@@ -48,6 +48,7 @@ public class PlayerControls : MonoBehaviour
     Vector3 m_EulerAngleVelocity;
     int lastXThrow = -1;
     public bool crippled = false;
+    public bool finaleDisabled = false;
 
     [SerializeField] CollisionHandler CH;
 
@@ -153,13 +154,16 @@ public class PlayerControls : MonoBehaviour
 
     void ProcessFiring()
     {
-        if (Input.GetKey(KeyCode.Space) == true || (Input.GetAxis("XBOX_RT") >= 0.1f))
+        if (finaleDisabled == false)
         {
-            SetLasersActive(true);
-        }
-        else
-        {
-            SetLasersActive(false);
+            if (Input.GetKey(KeyCode.Space) == true || (Input.GetAxis("XBOX_RT") >= 0.1f))
+            {
+                SetLasersActive(true);
+            }
+            else
+            {
+                SetLasersActive(false);
+            }
         }
     }
 

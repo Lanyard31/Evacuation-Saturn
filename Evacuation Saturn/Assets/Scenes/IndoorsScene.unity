@@ -449,10 +449,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: December the Thirty-First, 2672
+  m_text: Stardate - 31.12.2672
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: abb3cde32d1bccd43b62c4373786410c, type: 2}
-  m_sharedMaterial: {fileID: 3587902216334411855, guid: abb3cde32d1bccd43b62c4373786410c, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 6fa88050f2d264941abaffb0f04da19a, type: 2}
+  m_sharedMaterial: {fileID: -5138392717198991842, guid: 6fa88050f2d264941abaffb0f04da19a, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -476,8 +476,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 26
-  m_fontSizeBase: 26
+  m_fontSize: 34
+  m_fontSizeBase: 34
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -856,8 +856,8 @@ MonoBehaviour:
     We are to abandon the colony on Enceladus and rendezvous immediately with the
     remainder of the Saturn defense fleet.
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: abb3cde32d1bccd43b62c4373786410c, type: 2}
-  m_sharedMaterial: {fileID: 3587902216334411855, guid: abb3cde32d1bccd43b62c4373786410c, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 6fa88050f2d264941abaffb0f04da19a, type: 2}
+  m_sharedMaterial: {fileID: -5138392717198991842, guid: 6fa88050f2d264941abaffb0f04da19a, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -881,8 +881,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 26
-  m_fontSizeBase: 26
+  m_fontSize: 54
+  m_fontSizeBase: 54
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1072,7 +1072,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 854ede2795c7b274dabebea5b300e2f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeTillDestruction: 15
+  timeTillDestruction: 20
 --- !u!1 &1915194376
 GameObject:
   m_ObjectHideFlags: 1
